@@ -1,3 +1,4 @@
+
 const pregunta = {
     titulo: '¿A quién ha doblado más veces Constantino Romero?',
     respuestas: [
@@ -35,7 +36,7 @@ const pregunta = {
 }
 
 function imprimePregunta(pregunta) {
-  const newHTML = "";
+  let newHTML = "";
 
   newHTML += imprimeTitulo(pregunta);
   newHTML += imprimeTodasLasRespuestas(pregunta);
@@ -45,22 +46,31 @@ function imprimePregunta(pregunta) {
 
 function imprimeTitulo(pregunta) {
   // Put your code here
+  return '<p>' + pregunta.titulo + '</p>';
 }
 
 function imprimeTodasLasRespuestas(pregunta) {
   // Put your code here
+  let todasRespuestas = "";
+  for (let i = 0; i < pregunta.respuestas.length; i++) {
+	todasRespuestas += imprimeUnaRespuesta(i);
+  }
+  return todasRespuestas;
 }
 
 function imprimeUnaRespuesta(respuesta) {
   // Put your code here
+  return imprimeLabel(respuesta) + imprimeInput(respuesta);
 }
 
 function imprimeLabel(respuesta) {
   // Put your code here
+	return '<label for=' + pregunta.respuestas[respuesta].id + '>' + pregunta.respuestas[respuesta].label + '</label>';
 }
 
 function imprimeInput(respuesta) {
   // Put your code here
+  return "<input id=" + pregunta.respuestas[respuesta].id + " name=" + pregunta.respuestas[respuesta].name + " type='radio' valule=" + pregunta.respuestas[respuesta].value + ">";
 }
 
 document.getElementById("contenedorPreguntas").innerHTML = imprimePregunta(pregunta);
